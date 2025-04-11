@@ -6,16 +6,16 @@ type Props = {
   options?: { title: string; additionalPrice: number }[];
 };
 
-const Price = ({ price, id, options }: Props) => {
+const Price = ({ price, options }: Props) => {
   const [total, setTotal] = useState(price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
-  useEffect(()=>{
-    setTotal(quantity * (options ? price+options[selected].additionalPrice:price))
-  },
-  
-  [quantity,selected, options, price])
+  useEffect(() => {
+    setTotal(
+      quantity * (options ? price + options[selected].additionalPrice : price)
+    );
+  }, [quantity, selected, options, price]);
   return (
     <div className="">
       <h2 className="text-2xl font-bold">${total.toFixed(2)}</h2>
